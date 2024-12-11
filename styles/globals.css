@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {
+  width: 100%;
+  margin: 0 auto;
+  height: 300px;
+  object-fit: cover;
+}
+
+p {
+  margin: 7px 0;
+  font-weight: 400;
+  line-height: 1.7rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+body {
+  background-color: #f3f3f3;
+}
