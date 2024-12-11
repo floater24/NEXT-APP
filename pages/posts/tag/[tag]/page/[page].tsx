@@ -11,7 +11,7 @@ import Tag from "@/components/Tag/Tag";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = await getAllTags();
-  let params = [];
+  const params = [];
 
   await Promise.all(
     allTags.map((tag: string) => {
@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // console.log(params);
 
   return {
-    fallback: "blocking",
+    fallback: "true",
   };
 };
 

@@ -1,17 +1,11 @@
 import Pagination from "@/components/Pagination/Pagination";
 import SinglePost from "@/components/Post/SinglePost";
-import {
-  getAllPosts,
-  getNumberOfPages,
-  getPostsByPage,
-  getPostsForTopPage,
-} from "@/lib/notionAPI";
+import { getNumberOfPages, getPostsByPage } from "@/lib/notionAPI";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const numberOfPage = await getNumberOfPages();
-  console.log(numberOfPage);
 
   let params = [];
   for (let i = 1; i <= numberOfPage; i++) {
@@ -20,7 +14,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: params,
-    fallback: "blocking",
+    fallback: "true",
   };
 };
 
@@ -40,7 +34,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     revalidate: 60,
   };
 };
-
 const BlogPageList = ({ postsByPage, numberOfPage }) => {
   return (
     <div className="container h-full w-full mx-auto font-mono">
@@ -57,7 +50,6 @@ const BlogPageList = ({ postsByPage, numberOfPage }) => {
           {postsByPage.map((post) => (
             <div key={post}>
               <SinglePost
-                key={post.slug}
                 Name={post.Name}
                 description={post.description}
                 date={post.date}
