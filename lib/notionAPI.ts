@@ -97,9 +97,6 @@ export const getNumberOfPages = async () => {
 
 export const getPostByTagAndPage = async (tagName: string, page: number) => {
   const allPosts = await getAllPosts();
-  const posts = allPosts.filter((post) =>
-    post.tags.find((tag: string) => tag === tagName)
-  );
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
   const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
 

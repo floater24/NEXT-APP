@@ -3,13 +3,9 @@ import Head from "next/head";
 import Pagination from "../../../../../components/Pagination/Pagination";
 import SinglePost from "../../../../../components/Post/SinglePost";
 import {
-  getAllPosts,
   getAllTags,
-  getNumberOfPages,
   getNumberOfPagesByTag,
-  getPostsByPage,
   getPostsByTagAndPage,
-  getPostsForTopPage,
 } from "../../../../../lib/notionAPI";
 import Tag from "@/components/Tag/Tag";
 
@@ -30,7 +26,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // console.log(params);
 
   return {
-    paths: params,
     fallback: "blocking",
   };
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 const Author: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const Author: React.FC = () => {
 
       <div className="max-w-3xl mx-auto text-center">
         {/* キャラクター画像 */}
-        <img
+        <Image
           className="w-3/6 mx-auto mb-8"
           src="animal_chara_computer_azarashi.png"
           alt="アザラシのキャラクター"

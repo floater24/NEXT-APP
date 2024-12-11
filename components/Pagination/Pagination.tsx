@@ -10,7 +10,7 @@ interface Props {
 const Pagination = (props: Props) => {
   const { numberOfPage, tag } = props;
 
-  let pages: number[] = [];
+  const pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
     pages.push(i);
   }
