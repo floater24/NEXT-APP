@@ -19,22 +19,20 @@ const Author: React.FC = () => {
           alt="アザラシのキャラクター"
         />
 
-        {/* 著者名 */}
         <h1 className="text-4xl font-extrabold text-gray-800">
-          Author's Name: Hello, World.
+          Author Name: Hello, World.
         </h1>
 
-        {/* 自己紹介メッセージ */}
         <p className="mt-6 text-lg text-gray-600 leading-relaxed">
           人間。このブログでは主にプログラミングや趣味のことについて書こうと思います。
         </p>
 
         <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-          好きなボカロPは<span className="font-semibold text-gray-800">日向電工</span>と
+          好きなボカロPは
+          <span className="font-semibold text-gray-800">日向電工</span>と
           <span className="font-semibold text-gray-800">wowaka</span>。
           使用プログラミング言語は
-          <span className="font-semibold text-blue-600">TypeScript</span>
-          と
+          <span className="font-semibold text-blue-600">TypeScript</span>と
           <span className="font-semibold text-blue-600">JavaScript</span>。
         </p>
       </div>

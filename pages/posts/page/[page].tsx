@@ -7,14 +7,14 @@ import Head from "next/head";
 export const getStaticPaths: GetStaticPaths = async () => {
   const numberOfPage = await getNumberOfPages();
 
-  let params = [];
+  const params = [];
   for (let i = 1; i <= numberOfPage; i++) {
     params.push({ params: { page: i.toString() } });
   }
 
   return {
     paths: params,
-    fallback: "true",
+    fallback: "blocking",
   };
 };
 
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     parseInt(currentPage.toString(), 10)
   );
   const numberOfPage = await getNumberOfPages();
-  console.log(numberOfPage);
+  // console.log(numberOfPage);
   return {
     props: {
       postsByPage,

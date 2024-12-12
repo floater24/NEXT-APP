@@ -35,7 +35,7 @@ const getPageMetaData = (post) => {
   const getTags = (tags) => {
     return tags?.map((tag) => tag.name) || [];
   };
-  console.log(post);
+  // console.log(post);
   return {
     id: post.id,
     Name: post.properties?.Name?.title?.[0]?.plain_text || "Untitled",
@@ -64,7 +64,7 @@ export const getSinglePost = async (slug) => {
 
   const mdBlocks = await n2m.pageToMarkdown(page.id);
   const mdString = n2m.toMarkdownString(mdBlocks);
-  console.log(mdString);
+  // console.log(mdString);
   return {
     metadata,
     markdown: mdString,
@@ -108,7 +108,7 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
     post.tags.find((tag: string) => tag === tagName)
   );
 
-  console.log(posts);
+  // console.log(posts);
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
   const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
 
@@ -133,7 +133,7 @@ export const getAllTags = async () => {
   const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
   const set = new Set(allTagsDuplicationLists);
   const allTagsList = Array.from(set);
-  console.log(allTagsList);
+  //console.log(allTagsList);
 
   return allTagsList;
 };
