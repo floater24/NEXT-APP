@@ -12,11 +12,12 @@ const Author: React.FC = () => {
       </Head>
 
       <div className="max-w-3xl mx-auto text-center">
-        {/* キャラクター画像 */}
         <Image
           className="w-3/6 mx-auto mb-8"
-          src="animal_chara_computer_azarashi.png"
+          src="/animal_chara_computer_azarashi.png"
           alt="アザラシのキャラクター"
+          width={500} // 画像の幅を指定
+          height={300} // 画像の高さを指定
         />
 
         <h1 className="text-4xl font-extrabold text-gray-800">

@@ -51,7 +51,7 @@ const Post = ({ post }) => {
       <div className="mt-10 font-medium">
         <ReactMarkdown
           components={{
-            code({  inline, className, children, props }) {
+            code({ inline, className, children, props }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
@@ -71,12 +71,12 @@ const Post = ({ post }) => {
         </ReactMarkdown>
 
         <Link href="/">
-          <span className="pb-20 block mt-3 text-stone-900 ">
+          <span className="pb-20 block mt-3 text-stone-900 hover:text-stone-700">
             &larr;ホームに戻る
           </span>
         </Link>
-        <Link href=" https://marshmallow-qa.com/12sgnjwewpk4r5w?t=6f43D2&utm_medium=url_text&utm_source=promotion">
-          <button className="bg-stone-900 hover:bg-stone-700 text-white font-bold py-2 px-4 border-b-4 border-stone-700 hover:border-stone-500 rounded ">
+        <Link href="https://marshmallow-qa.com/12sgnjwewpk4r5w?t=6f43D2&utm_medium=url_text&utm_source=promotion">
+          <button className="bg-stone-900 hover:bg-stone-700 text-white font-bold py-2 px-4 border-b-4 border-stone-700 hover:border-stone-500 rounded">
             質問・感想はこちら！
           </button>
         </Link>
