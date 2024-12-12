@@ -6,6 +6,7 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
+
 const n2m = new NotionToMarkdown({ notionClient: notion });
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
@@ -30,12 +31,27 @@ export const getAllPosts = async () => {
     return getPageMetaData(post);
   });
 };
-
-const getPageMetaData = (post) => {
-  const getTags = (tags) => {
+type Post = {
+  id: string;
+  properties: {
+    Name: { title: { plain_text: string }[] };
+    Description: { rich_text: { plain_text: string }[] };
+    Date: { date: { start: string } };
+    Slug: { rich_text: { plain_text: string }[] };
+    Tags: { multi_select: { name: string }[] };
+  };
+};
+type Tag = {
+  name: string;
+};
+type Tags = Tag[];
+const getPageMetaData = (post:Post) => {
+  const getTags = (tags:Tags) => {
     return tags?.map((tag) => tag.name) || [];
   };
   // console.log(post);
+
+  
   return {
     id: post.id,
     Name: post.properties?.Name?.title?.[0]?.plain_text || "Untitled",
