@@ -62,9 +62,9 @@ const getPageMetaData = (post:Post) => {
   };
 };
 
-export const getSinglePost = async (slug) => {
+export const getSinglePost = async (slug:string) => {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATADASE_ID,
+    database_id: process.env.NOTION_DATADASE_ID || "",
     filter: {
       property: "Slug",
       formula: {
@@ -84,6 +84,7 @@ export const getSinglePost = async (slug) => {
   return {
     metadata,
     markdown: mdString,
+    
   };
 };
 // Topページ用記事の取得（4つ）//

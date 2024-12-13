@@ -12,13 +12,27 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       fourPosts,
-      allTags
+      allTags,
     },
     revalidate: 60,
   };
 };
-
-export default function Home({ fourPosts, allTags }) {
+type Post = {
+  id: string;
+  Name: string;
+  description: string;
+  date: string;
+  tags: string[];
+  slug: string;
+  isPaginationPage: boolean;
+};
+export default function Home({
+  fourPosts,
+  allTags,
+}: {
+  fourPosts: Post[];
+  allTags: string[];
+}) {
   return (
     <div className="container h-full w-full mx-auto font-mono">
       <Head>
@@ -27,7 +41,9 @@ export default function Home({ fourPosts, allTags }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container w-full mt-16">
-        <h1 className="text-5xl font-medium text-center mb-16 ">～Programming and etc.～</h1>
+        <h1 className="text-5xl font-medium text-center mb-16 ">
+          ～Programming and etc.～
+        </h1>
         {fourPosts.map((post) => (
           <div className="mx-4" key={post.id}>
             <SinglePost
@@ -40,6 +56,7 @@ export default function Home({ fourPosts, allTags }) {
             />
           </div>
         ))}
+
         <Link
           href="/posts/page/1"
           className="mb-6 lg:w-1/2 mx-auto px-5 block text-right"

@@ -12,7 +12,6 @@ import Tag from "@/components/Tag/Tag";
 export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = await getAllTags();
   const params = [];
-
   await Promise.all(
     allTags.map((tag: string) => {
       return getNumberOfPagesByTag(tag).then((numberOfPagesByTag: number) => {
@@ -23,17 +22,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
   );
 
-  // console.log(params);
+ 
 
   return {
     paths: params,
     fallback: "blocking",
+    
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const currentPage: string = context.params?.page.toString();
-  const currentTag: string = context.params?.tag.toString();
+  const currentPage: string = context.params?.page || "".toString();
+  const currentTag: string = context.params?.tag || "".toString();
 
   const upperCaseCurrentTag =
     currentTag.charAt(0).toUpperCase() + currentTag.slice(1);

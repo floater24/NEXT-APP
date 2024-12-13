@@ -16,8 +16,11 @@ export const getStaticPaths = async () => {
     fallback: "blocking",
   };
 };
-
-export const getStaticProps = async ({ params }) => {
+type Params = {
+  params: string;
+  slug: string;
+};
+export const getStaticProps = async ({ params }: { params: Params }) => {
   const post = await getSinglePost(params.slug);
 
   return {
@@ -28,7 +31,20 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const Post = ({ post }) => {
+type Post = {
+  metadata: {
+    Name: string;
+    date: string;
+    tags: string[];
+    index: number;
+  };
+  markdown: {
+    content: string;
+    parent: string;
+  };
+};
+
+const Post = ({ post }: { post: Post }) => {
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
       <Head>
@@ -40,7 +56,7 @@ const Post = ({ post }) => {
       <div className="border-b-2 w-1/3 mt-1 border-stone-900"></div>
       <span className="text-gray-500">Posted date at {post.metadata.date}</span>
       <br />
-      {post.metadata.tags.map((tag: string, index: number) => (
+      {post.metadata.tags.map((tag, index) => (
         <p
           className="text-white bg-stone-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2 hover:bg-stone-700"
           key={index}
@@ -51,7 +67,16 @@ const Post = ({ post }) => {
       <div className="mt-10 font-medium">
         <ReactMarkdown
           components={{
-            code({ inline, className, children, props }) {
+            code({
+              inline,
+              className,
+              children,
+              ...props
+            }: {
+              inline?: boolean;
+              className?: string;
+              children?: React.ReactNode;
+            }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
