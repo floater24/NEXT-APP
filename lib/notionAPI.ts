@@ -11,7 +11,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
-    database_id: process.env.NOTION_DATADASE_ID || "",
+    database_id: process.env.NOTION_DATABASE_ID || "",
     page_size: 100,
     filter: {
       property: "Published",
@@ -50,7 +50,7 @@ const getPageMetaData = (post: any) => {
 
 export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATADASE_ID || "",
+    database_id: process.env.NOTION_DATABASE_ID || "",
     filter: {
       property: "Slug",
       formula: {
