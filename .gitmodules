@@ -1,0 +1,3 @@
+[submodule "Hello,World.blog"]
+	path = Hello,World.blog
+	url = https://github.com/floater24/NEXT-APP.git
