@@ -11,7 +11,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
-    database_id: process.env.NOTION_DATADASE_ID!,
+    database_id: process.env.NOTION_DATADASE_ID || "",
     page_size: 100,
     filter: {
       property: "Published",
@@ -72,7 +72,7 @@ export const getSinglePost = async (slug: string) => {
     markdown: mdString,
   };
 };
-// Topページ用記事の取得（4つ）//
+
 export const getPostsForTopPage = async (pageSize: number) => {
   const allPosts = await getAllPosts();
   const sixPosts = allPosts.slice(0, pageSize);
