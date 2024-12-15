@@ -20,7 +20,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const currentPage = context.params?.page;
-
+  if (typeof currentPage !== "string" || isNaN(Number(currentPage))) {
+    return {
+      notFound: true, // or return a default value, depending on your requirement
+    };
+  }
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10)
   );
@@ -34,7 +38,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     revalidate: 60,
   };
 };
-const BlogPageList = ({ postsByPage, numberOfPage }) => {
+type Post = {
+  Name: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags: string[];
+};
+type BlogPageListProps = {
+  postsByPage: Post[]; // Array of Post objects
+  numberOfPage: number; // Total number of pages
+};
+
+const BlogPageList = ({ postsByPage, numberOfPage }: BlogPageListProps) => {
   return (
     <div className="container h-full w-full mx-auto font-mono">
       <Head>
@@ -47,8 +63,8 @@ const BlogPageList = ({ postsByPage, numberOfPage }) => {
           ～Programming and etc.～
         </h1>
         <section className="sm:grid grid-cols-2 w-5/6 gap-3 mx-auto">
-          {postsByPage.map((post) => (
-            <div key={post}>
+          {postsByPage.map((post: Post) => (
+            <div key={post.slug}>
               <SinglePost
                 Name={post.Name}
                 description={post.description}

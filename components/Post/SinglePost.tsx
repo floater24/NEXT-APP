@@ -5,10 +5,11 @@ type Props = {
   Name: string;
   description: string;
   date: string;
-  tags: string[]; 
+  tags: string[];
   slug: string;
   isPaginationPage: boolean;
 };
+
 
 const SinglePost = (props: Props) => {
   const { Name, description, date, tags, slug, isPaginationPage } = props;

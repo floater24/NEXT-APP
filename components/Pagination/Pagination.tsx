@@ -4,7 +4,7 @@ import React from "react";
 
 interface Props {
   numberOfPage: number;
-  tag: string;
+  tag?: string;
 }
 
 const Pagination = (props: Props) => {
@@ -19,9 +19,12 @@ const Pagination = (props: Props) => {
     <section className="mb-8 lg:w-1/2 mx-auto rounded-md p-5">
       <ul className="flex items-center justify-center gap-4">
         {pages.map((page) => (
-          <li className="bg-stone-900 rounded-lg w-6 h-8 relative hover:animate-bounce hover:bg-stone-700" key={page}>
+          <li
+            className="bg-stone-900 rounded-lg w-6 h-8 relative hover:animate-bounce hover:bg-stone-700"
+            key={page}
+          >
             <Link
-              href={getPageLink(tag, page)}
+              href={getPageLink(tag || "", page)}
               className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-slate-100"
             >
               {page}

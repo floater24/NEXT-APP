@@ -8,10 +8,18 @@ import {
   getPostsByTagAndPage,
 } from "../../../../../lib/notionAPI";
 import Tag from "@/components/Tag/Tag";
+import { FC } from "react";
+
+type Params = {
+  params: {
+    tag: string;
+    page: string;
+  };
+}[];
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = await getAllTags();
-  const params = [];
+  const params: Params = [];
   await Promise.all(
     allTags.map((tag: string) => {
       return getNumberOfPagesByTag(tag).then((numberOfPagesByTag: number) => {
@@ -22,18 +30,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
   );
 
- 
-
   return {
     paths: params,
     fallback: "blocking",
-    
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const currentPage: string = context.params?.page || "".toString();
-  const currentTag: string = context.params?.tag || "".toString();
+  const currentPageParam = context.params?.page;
+  const currentTagParam = context.params?.tag;
+
+  const currentPage: string = Array.isArray(currentPageParam)
+    ? currentPageParam[0] // 配列の場合は最初の要素を使用
+    : currentPageParam || "";
+
+  const currentTag: string = Array.isArray(currentTagParam)
+    ? currentTagParam[0] // 配列の場合は最初の要素を使用
+    : currentTagParam || "";
 
   const upperCaseCurrentTag =
     currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
@@ -57,8 +70,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
     revalidate: 60 * 60 * 6,
   };
 };
+type BlogTagPageListProps = {
+  numberOfPagesByTag: number;
+  posts: {
+    id: string;
+    Name: string;
+    description: string;
+    date: string;
+    tags: string[];
+    slug: string;
+  }[];
+  currentTag: string;
+  allTags: string[];
+};
 
-const BlogTagPageList = ({
+const BlogTagPageList: FC<BlogTagPageListProps> = ({
   numberOfPagesByTag,
   posts,
   currentTag,

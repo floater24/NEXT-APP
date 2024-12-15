@@ -1,13 +1,14 @@
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-
 const n2m = new NotionToMarkdown({ notionClient: notion });
+
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATADASE_ID!,
@@ -15,15 +16,11 @@ export const getAllPosts = async () => {
     filter: {
       property: "Published",
       checkbox: {
-        equals:true,
+        equals: true,
       },
     },
-    sorts: [{ property: "Date",
-      direction: "descending",
-     }],
+    sorts: [{ property: "Date", direction: "descending" }],
   });
-
-  console.log("Notion Database ID:", process.env.NOTION_DATADASE_ID);
 
   const allPosts = posts.results;
 
@@ -31,27 +28,16 @@ export const getAllPosts = async () => {
     return getPageMetaData(post);
   });
 };
-type Post = {
-  id: string;
-  properties: {
-    Name: { title: { plain_text: string }[] };
-    Description: { rich_text: { plain_text: string }[] };
-    Date: { date: { start: string } };
-    Slug: { rich_text: { plain_text: string }[] };
-    Tags: { multi_select: { name: string }[] };
-  };
-};
-type Tag = {
-  name: string;
-};
-type Tags = Tag[];
-const getPageMetaData = (post:Post) => {
-  const getTags = (tags:Tags) => {
-    return tags?.map((tag) => tag.name) || [];
-  };
-  // console.log(post);
 
-  
+const getPageMetaData = (post: any) => {
+  const getTags = (tags: { name: string }[]) => {
+    const allTags = tags.map((tag) => {
+      return tag.name;
+    });
+
+    return allTags;
+  };
+
   return {
     id: post.id,
     Name: post.properties?.Name?.title?.[0]?.plain_text || "Untitled",
@@ -62,7 +48,7 @@ const getPageMetaData = (post:Post) => {
   };
 };
 
-export const getSinglePost = async (slug:string) => {
+export const getSinglePost = async (slug: string) => {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATADASE_ID || "",
     filter: {
@@ -75,7 +61,7 @@ export const getSinglePost = async (slug:string) => {
     },
   });
 
-  const page = response.results[0];
+  const page = response.results[0] as PageObjectResponse;
   const metadata = getPageMetaData(page);
 
   const mdBlocks = await n2m.pageToMarkdown(page.id);
@@ -84,14 +70,13 @@ export const getSinglePost = async (slug:string) => {
   return {
     metadata,
     markdown: mdString,
-    
   };
 };
 // Topページ用記事の取得（4つ）//
 export const getPostsForTopPage = async (pageSize: number) => {
   const allPosts = await getAllPosts();
-  const fourPosts = allPosts.slice(0, pageSize);
-  return fourPosts;
+  const sixPosts = allPosts.slice(0, pageSize);
+  return sixPosts;
 };
 // ページ番号に応じた記事取得//
 export const getPostsByPage = async (page: number) => {
@@ -112,7 +97,7 @@ export const getNumberOfPages = async () => {
   );
 };
 
-export const getPostByTagAndPage = async (tagName: string, page: number) => {
+export const getPostByTagAndPage = async (page: number) => {
   const allPosts = await getAllPosts();
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
   const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
