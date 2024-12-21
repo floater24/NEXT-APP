@@ -5,16 +5,7 @@ const Navbar = () => {
   return (
     <nav className="container mx-auto lg:px-2 px-5 lg:w-2/5">
       <div className="container flex items-center justify-between mx-auto">
-        <Link
-          href="/"
-          className=" font-medium hover:text-teal-500 transition-all duration-300   block 
-    px-2 
-    py-1 
-    text-xs 
-    sm:px-4 
-    sm:py-2 
-    sm:text-base "
-        >
+        <Link href="/" className="sm:text-2xl font-medium hover:text-teal-500 transition-all duration-300">
           Hello, World.
         </Link>
         <div>
@@ -54,8 +45,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/privacyPolicy"
-                className="block     sm:px-4 px-2  sm:text-base 
-    py-1 
+                className="block     sm:px-4 
     sm:py-2 
  hover:text-teal-500  transition-all duration-300"
               >
