@@ -62,6 +62,15 @@ const BlogPageList = ({ postsByPage, numberOfPage }: BlogPageListProps) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6071464909624554"
           crossOrigin="anonymous"
         ></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-9RVL0VZTWW');
+        </script>
       </Head>
       <main className="container w-full mt-16">
         <h1 className="text-5xl font-medium text-center mb-16 ">

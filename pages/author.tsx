@@ -14,6 +14,15 @@ const Author: React.FC = () => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6071464909624554"
           crossOrigin="anonymous"
         ></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9RVL0VZTWW');
+</script>
       </Head>
 
       <div className="max-w-3xl mx-auto text-center">

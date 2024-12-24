@@ -55,6 +55,15 @@ const Post = ({ post }: { post: Post }) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6071464909624554"
           crossOrigin="anonymous"
         ></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-9RVL0VZTWW');
+        </script>
       </Head>
       <h2 className="w-full text-2xl font-medium">{post.metadata.Name}</h2>
       <div className="border-b-2 w-2/3 mt-1 border-stone-900"></div>

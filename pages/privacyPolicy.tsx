@@ -12,6 +12,15 @@ const PrivacyPolicy = () => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6071464909624554"
           crossOrigin="anonymous"
         ></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-9RVL0VZTWW');
+        </script>
       </Head>
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-3xl font-bold text-gray-800 border-b pb-2 mb-6">
