@@ -13,7 +13,7 @@ declare global {
     dataLayer: Record<string, any>[];
   }
 
-  let dataLayer: Record<string, any>[];
+  var dataLayer: Record<string, any>[];
 }
 if (typeof window !== 'undefined') {
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +35,7 @@ declare global {
     customArguments: Record<string, any>[];
   }
 
-  var customArguments: Record<string, any>[]; // `let`から`var`に変更してグローバルスコープに対応
+  var customArguments: Record<string, any>[]; 
 }
 
 // 実際に利用する際に、初期化を行うコード
