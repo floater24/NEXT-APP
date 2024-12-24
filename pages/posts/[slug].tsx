@@ -5,6 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
 import Link from "next/link";
 import Head from "next/head";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import rehypeRaw from "rehype-raw";
 
 export const getStaticPaths = async () => {
   const allPosts = await getAllPosts();
@@ -46,7 +47,7 @@ type Post = {
 const Post = ({ post }: { post: Post }) => {
   return (
     <section className="container px-5 h-auto max-w-3xl mx-auto mt-20">
-       <Head>
+      <Head>
         <title>Hello, World.</title>
         <meta
           name="description"
@@ -60,7 +61,10 @@ const Post = ({ post }: { post: Post }) => {
           crossOrigin="anonymous"
         ></script>
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -71,7 +75,7 @@ const Post = ({ post }: { post: Post }) => {
             `,
           }}
         />
-         </Head>
+      </Head>
       <h2 className="w-full text-2xl font-medium">{post.metadata.Name}</h2>
       <div className="border-b-2 w-2/3 mt-1 border-stone-900"></div>
       <span className="text-gray-500">Posted date at {post.metadata.date}</span>
@@ -87,7 +91,24 @@ const Post = ({ post }: { post: Post }) => {
       <div className="mt-10 font-medium break-words">
         <ReactMarkdown
           className="prose prose-lg text-justify leading-relaxed"
+          rehypePlugins={[rehypeRaw]} // 生のHTMLを許可
           components={{
+            a: ({ href, ...props }) => {
+              if (href && href.includes("youtube.com/watch")) {
+                const videoId = href.split("v=")[1]?.split("&")[0];
+                return (
+                  <div className="iframe-container">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                );
+              }
+              return <a href={href} {...props} />;
+            },
             h1: ({ node, ...props }) => (
               <h1 className="text-4xl font-bold my-6" {...props} />
             ),
