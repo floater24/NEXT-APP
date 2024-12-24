@@ -107,7 +107,7 @@ const BlogTagPageList: FC<BlogTagPageListProps> = ({
         ></script>
         <script>
           window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
+          {dataLayer.push(customArguments)}
           gtag('js', new Date()); gtag('config', 'G-9RVL0VZTWW');
         </script>
       </Head>

@@ -18,7 +18,7 @@ const Author: React.FC = () => {
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)}
+  function gtag(){dataLayer.push(customArguments)}
   gtag('js', new Date());
 
   gtag('config', 'G-9RVL0VZTWW');

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+
 const PrivacyPolicy = () => {
   return (
     <div className=" min-h-screen py-8 px-4 sm:px-6 lg:px-8">
@@ -18,7 +19,7 @@ const PrivacyPolicy = () => {
         ></script>
         <script>
           window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
+          {dataLayer.push(customArguments)}
           gtag('js', new Date()); gtag('config', 'G-9RVL0VZTWW');
         </script>
       </Head>
