@@ -2,14 +2,14 @@ import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constants";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-
+//Notion API クライアントの作成と認証認証
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-const n2m = new NotionToMarkdown({ notionClient: notion });
+const n2m = new NotionToMarkdown({ notionClient: notion }); //notion-to-md ライブラリを使い、クライアントを初期化クライアントを初期化
 
-export const getAllPosts = async () => {
+export const getAllPosts = async () => { //全ての投稿を取得
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
     page_size: 100,
@@ -29,7 +29,7 @@ export const getAllPosts = async () => {
   });
 };
 
-const getPageMetaData = (post: any) => {
+const getPageMetaData = (post: any) => { //各投稿のメタデータを抽出する関数
   const getTags = (tags: { name: string }[]) => {
     const allTags = tags.map((tag) => {
       return tag.name;
@@ -48,7 +48,7 @@ const getPageMetaData = (post: any) => {
   };
 };
 
-export const getSinglePost = async (slug: string) => {
+export const getSinglePost = async (slug: string) => { //slugに対応する投稿の取得
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
     filter: {
@@ -73,7 +73,7 @@ export const getSinglePost = async (slug: string) => {
   };
 };
 
-export const getPostsForTopPage = async (pageSize: number) => {
+export const getPostsForTopPage = async (pageSize: number) => { //トップページ用に指定された件数の投稿を取得
   const allPosts = await getAllPosts();
   const sixPosts = allPosts.slice(0, pageSize);
   return sixPosts;
@@ -87,7 +87,7 @@ export const getPostsByPage = async (page: number) => {
 
   return allPosts.slice(startIndex, endIndex);
 };
-
+//タグ別に投稿を取得し、指定されたページに対応する投稿の一部を返す
 export const getNumberOfPages = async () => {
   const allPosts = await getAllPosts();
 
@@ -96,7 +96,7 @@ export const getNumberOfPages = async () => {
     (allPosts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
   );
 };
-
+//特定のタグを持つ投稿をフィルタリングし、指定されたページの投稿を取得
 export const getPostByTagAndPage = async (page: number) => {
   const allPosts = await getAllPosts();
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
@@ -116,7 +116,7 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
 
   return posts.slice(startIndex, endIndex);
 };
-
+//特定のタグに基づく投稿の総数を計算し、それに基づいて必要なページ数を計算
 export const getNumberOfPagesByTag = async (tagName: string) => {
   const allPosts = await getAllPosts();
   const posts = allPosts.filter((post) =>
@@ -128,7 +128,7 @@ export const getNumberOfPagesByTag = async (tagName: string) => {
     (posts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
   );
 };
-
+//データベース内のすべての投稿からタグを取得し、一意のリストを生成
 export const getAllTags = async () => {
   const allPosts = await getAllPosts();
 

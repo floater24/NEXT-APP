@@ -9,7 +9,7 @@ interface Props {
 
 const Pagination = (props: Props) => {
   const { numberOfPage, tag } = props;
-
+//指定されたページ数に基づいて、ページ番号の配列を生成
   const pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
     pages.push(i);

@@ -81,24 +81,24 @@ const Post = ({ post }: { post: Post }) => {
       <span className="text-gray-500">Posted date at {post.metadata.date}</span>
       <br />
       {post.metadata.tags.map((tag, index) => (
-        <p
-          className="text-white bg-stone-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2 hover:bg-stone-700"
+        <div
+          className="text-white bg-stone-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2 hover:bg-stone-700" //タグの展開タグの展開
           key={index}
         >
           <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
-        </p>
+        </div>
       ))}
       <div className="mt-10 font-medium break-words">
         <ReactMarkdown
           className="prose prose-lg text-justify leading-relaxed"
           rehypePlugins={[rehypeRaw]} // 生のHTMLを許可
           components={{
-            a: ({ href, ...props }) => {
+            a: ({ href, ...props }) => {  //ユーチューブの埋め込みを修正
               if (href && href.includes("youtube.com/watch")) {
                 const videoId = href.split("v=")[1]?.split("&")[0];
                 return (
-                  <div className="iframe-container">
-                    <iframe
+                  <div className="iframe-container ">
+                    <iframe className="rounded aspect-[3/2]"
                       src={`https://www.youtube.com/embed/${videoId}`}
                       
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -108,7 +108,7 @@ const Post = ({ post }: { post: Post }) => {
                 );
               }
               return <a href={href} {...props} />;
-            },
+            }, //ノーションの文章を整形
             h1: ({ node, ...props }) => (
               <h1 className="text-4xl font-bold my-6" {...props} />
             ),
@@ -152,7 +152,7 @@ const Post = ({ post }: { post: Post }) => {
             }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
-                <SyntaxHighlighter
+                <SyntaxHighlighter //コードの背景、コードのカラーの修正修正
                   style={vscDarkPlus}
                   language={match[1]}
                   showLineNumbers={true}
@@ -169,10 +169,10 @@ const Post = ({ post }: { post: Post }) => {
                     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  {String(children).trim()} {/* 改行や余計な文字を削除 */}
+                  {String(children).trim()} {/* trimで改行や余計な文字を削除 */}
                 </SyntaxHighlighter>
               ) : (
-                <code {...props}>{String(children).trim()}</code> // ここでもtrimを適用
+                <code {...props}>{String(children).trim()}</code> 
               );
             },
           }}
