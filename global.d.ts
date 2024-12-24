@@ -32,10 +32,10 @@ export {};
 
 declare global {
   interface Window {
-    customArguments: Record<string, any>[];
+    arguments: Record<string, any>[];
   }
 
-  var customArguments: Record<string, any>[]; 
+  var arguments: Record<string, any>[]; 
 }
 
 // 実際に利用する際に、初期化を行うコード
