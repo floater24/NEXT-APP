@@ -5,7 +5,10 @@ const Navbar = () => {
   return (
     <nav className="container mx-auto lg:px-2 px-5 lg:w-2/5">
       <div className="container flex items-center justify-between mx-auto">
-        <Link href="/" className="sm:text-2xl font-medium hover:text-teal-500 transition-all duration-300">
+        <Link
+          href="/"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium hover:text-teal-500 transition-all duration-300"
+        >
           Hello, World.
         </Link>
         <div>
@@ -45,9 +48,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/privacyPolicy"
-                className="block     sm:px-4 
-    sm:py-2 
- hover:text-teal-500  transition-all duration-300"
+                className="block sm:px-6 sm:py-3 px-4 py-2 hover:text-teal-500 transition-all duration-300"
               >
                 Privacy Policy{" "}
               </Link>
