@@ -5,7 +5,7 @@ import Image from "next/image";
 const Author: React.FC = () => {
   return (
     <div className=" min-h-screen py-12 px-6">
-     <Head>
+      <Head>
         <title>Hello, World.</title>
         <meta
           name="description"
@@ -19,7 +19,10 @@ const Author: React.FC = () => {
           crossOrigin="anonymous"
         ></script>
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RVL0VZTWW"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -30,15 +33,16 @@ const Author: React.FC = () => {
             `,
           }}
         />
-         </Head>
+      </Head>
 
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="mx-auto text-center max-w-sm mb-8 object-contain w-full">
         <Image
           className="w-3/6 mx-auto mb-8"
           src="/animal_chara_computer_azarashi.png"
           alt="アザラシのキャラクター"
           width={500} // 画像の幅を指定
           height={300} // 画像の高さを指定
+          sizes="(max-width: 640px) 100vw, 50vw" 
         />
 
         <h1 className="text-4xl font-extrabold text-gray-800">

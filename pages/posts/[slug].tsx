@@ -93,14 +93,15 @@ const Post = ({ post }: { post: Post }) => {
           className="prose prose-lg text-justify leading-relaxed"
           rehypePlugins={[rehypeRaw]} // 生のHTMLを許可
           components={{
-            a: ({ href, ...props }) => {  //ユーチューブの埋め込みを修正
+            a: ({ href, ...props }) => {
+              //ユーチューブの埋め込みを修正
               if (href && href.includes("youtube.com/watch")) {
                 const videoId = href.split("v=")[1]?.split("&")[0];
                 return (
                   <div className="iframe-container ">
-                    <iframe className="rounded aspect-[3/2]"
+                    <iframe
+                      className="rounded aspect-[3/2]"
                       src={`https://www.youtube.com/embed/${videoId}`}
-                      
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     ></iframe>
@@ -122,7 +123,10 @@ const Post = ({ post }: { post: Post }) => {
               />
             ),
             ul: ({ node, ...props }) => (
-              <ul className="list-disc list-inside my-4" {...props} />
+              <ul
+                className="list-disc list-inside my-4 font-weight: normal"
+                {...props}
+              />
             ),
             blockquote: ({ node, ...props }) => (
               <blockquote
@@ -172,7 +176,7 @@ const Post = ({ post }: { post: Post }) => {
                   {String(children).trim()} {/* trimで改行や余計な文字を削除 */}
                 </SyntaxHighlighter>
               ) : (
-                <code {...props}>{String(children).trim()}</code> 
+                <code {...props}>{String(children).trim()}</code>
               );
             },
           }}
