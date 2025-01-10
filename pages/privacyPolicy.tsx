@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
           name="description"
           content="このページでは、当ブログのプライバシーポリシーについて説明しています。"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/565bb1b054c96387a51e6557a796e4e0_xo.ico" />
         {/* Google AdSense */}
         <script
           async

@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="container flex items-center justify-between mx-auto">
         <Link
           href="/"
-          className="text-xl  md:text-3xl lg:text-4xl font-medium hover:text-teal-500  transition-all duration-300 sm:text-xxs"
+          className="text-2xl  md:text-xl lg:text-3xl font-medium hover:text-teal-500  transition-all duration-300 sm:text-xl"
         >
           Hello,World.
         </Link>
