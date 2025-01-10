@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const currentPage = context.params?.page;
   if (typeof currentPage !== "string" || isNaN(Number(currentPage))) {
     return {
-      notFound: true, // or return a default value, depending on your requirement
+      notFound: true, 
     };
   }
   const postsByPage = await getPostsByPage(
@@ -81,7 +81,7 @@ const BlogPageList = ({ postsByPage, numberOfPage }: BlogPageListProps) => {
          </Head>
       <main className="container w-full mt-16">
         <h1 className="text-5xl font-medium text-center mb-16 ">
-          ～Programming and etc.～
+        ～Tech and etc.～
         </h1>
         <section className="sm:grid grid-cols-2 w-5/6 gap-3 mx-auto">
           {postsByPage.map((post: Post) => (

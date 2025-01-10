@@ -46,7 +46,7 @@ type Post = {
 
 const Post = ({ post }: { post: Post }) => {
   return (
-    <section className="container px-5 h-auto max-w-3xl mx-auto mt-20">
+    <section className="container px-5 h-auto max-w-3xl mx-auto mt-20  ">
       <Head>
         <title>Hello, World.</title>
         <meta
@@ -77,7 +77,7 @@ const Post = ({ post }: { post: Post }) => {
         />
       </Head>
       <h2 className="w-full text-2xl font-medium">{post.metadata.Name}</h2>
-      <div className="border-b-2 w-2/3 mt-1 border-stone-900"></div>
+      <div className="border-b-2 w-1/2 mt-1 border-stone-900"></div>
       <span className="text-gray-500">Posted date at {post.metadata.date}</span>
       <br />
       {post.metadata.tags.map((tag, index) => (

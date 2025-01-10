@@ -45,7 +45,7 @@ const Author: React.FC = () => {
           sizes="(max-width: 640px) 100vw, 50vw" 
         />
 
-        <h1 className="text-4xl font-extrabold text-gray-800">
+        <h1 className="text-xl font-extrabold text-gray-800">
           Author Name: Hello, World.
         </h1>
 

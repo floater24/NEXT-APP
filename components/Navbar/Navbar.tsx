@@ -7,9 +7,9 @@ const Navbar = () => {
       <div className="container flex items-center justify-between mx-auto">
         <Link
           href="/"
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium hover:text-teal-500 transition-all duration-300"
+          className="text-xl  md:text-3xl lg:text-4xl font-medium hover:text-teal-500  transition-all duration-300 sm:text-xxs"
         >
-          Hello, World.
+          Hello,World.
         </Link>
         <div>
           <ul className="flex items-center text-sm py-4">
@@ -24,7 +24,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="https://x.com/Tomfool24234234"
-                className="block px-4 py-2 hover:text-teal-500  transition-all duration-300"
+                className="block px-4 py-2 hover:text-teal-500  transition-all duration-300 sm:text-xs"
               >
                 X
               </Link>
@@ -48,9 +48,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/privacyPolicy"
-                className="block sm:px-6 sm:py-3 px-4 py-2 hover:text-teal-500 transition-all duration-300"
+                className="block sm:px-6 sm:py-3 px-4 py-2 hover:text-teal-500 transition-all duration-300 "
               >
-                Privacy Policy{" "}
+                PrivacyPolicy{" "}
               </Link>
             </li>
           </ul>
